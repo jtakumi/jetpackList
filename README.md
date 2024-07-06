@@ -10,3 +10,24 @@ lazy list and change theme
     - blue 
     - red
     - yellow
+
+```mermaid
+
+ LandmarksList <|-- ListItem
+
+class LandmarkList {
+     ListItem()
+}
+
+class ListItem {
+    Landmark.name
+     boolen isFavorite
+}
+
+class ModelData {
+    Int id
+    String name
+    String description
+}
+
+```
