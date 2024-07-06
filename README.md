@@ -12,8 +12,14 @@ lazy list and change theme
     - yellow
 
 ```mermaid
+-
+tle: jetpackList
+-
 
+classDialogram
  LandmarksList <|-- ListItem
+ ListItem <|-- ModelData
+ note for ListItem "landmark[0]\landmark[1]\landmark[2]..."
 
 class LandmarkList {
      ListItem()
