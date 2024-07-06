@@ -14,13 +14,29 @@ lazy list and change theme
 ```mermaid
 
 ---
+title: show Landmark info list on scroll screen
+---
+
+sequenceDiagram
+Landmark.json->>ModelData:Read
+ModelData->>ListItem: Landmark infomation list
+ListItem->>LandmarkList: a Landmark's info according with number
+LandmarkList->>MainActivity: Landmark Items data
+
+
+```
+
+
+```mermaid
+
+---
 title: jetpackList
 ---
 
 classDiagram
  MainActivity <|-- LandmarkList
- LandmarkList <|-- ListItem
- ListItem <|-- ModelData
+ LandmarkList <|-- ListItem : List
+ ListItem <|-- ModelData: List
  note for ListItem "landmark[0]
  landmark[1]
  landmark[2]..."
@@ -35,10 +51,12 @@ class MainActivity {
 
 class LandmarkList {
      ListItem()
+     ListItem()
 }
 
 class ListItem {
     String Landmark.name
+    String Landmark.description
     boolen isFavorite
 }
 
@@ -59,7 +77,7 @@ title: System Theme State
 
 stateDiagram-v2
 
-s2 : States of System Light mode and Dark mode and chage color theme user input.
+s2 : States of change system theme and chage color theme user input.
 
 [*] --> LightTheme
 
