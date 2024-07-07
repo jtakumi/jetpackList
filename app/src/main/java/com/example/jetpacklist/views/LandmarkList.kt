@@ -24,11 +24,12 @@ import com.example.jetpacklist.viewmodel.LandmarkViewModel
 fun LandmarkList(viewModel: LandmarkViewModel) {
     val landmarks = viewModel.landmarks.observeAsState(initial = emptyList())
    LazyColumn {
-       item { Spacer(modifier = Modifier.padding(25.dp))}
+       item { Spacer(modifier = Modifier.padding(24.dp))}
        item { Text(text = "Landmarks", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.headlineLarge) }
        items(landmarks.value.size) { index ->
            ListItem(landmark = landmarks.value[index])
        }
+       item { Spacer(modifier = Modifier.padding(24.dp))}
    }
 }
 
