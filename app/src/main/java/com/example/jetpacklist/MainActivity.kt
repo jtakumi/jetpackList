@@ -4,27 +4,27 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
+import androidx.activity.viewModels
+import androidx.compose.material3.Surface
 import com.example.jetpacklist.ui.theme.JetpackListTheme
-import com.example.jetpacklist.views.LandmarkListView
+import com.example.jetpacklist.viewmodel.LandmarkViewModel
+import com.example.jetpacklist.views.LandmarkList
 
 
 class MainActivity : ComponentActivity() {
+
+    private val LandmarkViewModel: LandmarkViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             JetpackListTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                   LandmarkListView(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface {
+                    LandmarkList(viewModel = LandmarkViewModel)
                 }
             }
         }
     }
 }
+
