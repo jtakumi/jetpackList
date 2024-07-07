@@ -48,7 +48,7 @@ fun LandmarkList(viewModel: LandmarkViewModel) {
 @Composable
 fun ListItemPreview() {
    JetpackListTheme {
-       ListItem(landmark = LandmarkData(1, "landmark ex", "this is sample."))
+       ListItem(landmark = LandmarkData(1, "landmark ex", "this is sample.\nAbsolutely, Bob cautiously danced, eagerly flipping gracefully, hoping indigo jumpsuits kept leaping magically, neatly opening purple, quietly rippling starlight, twinkling under velvet waltzes, xenophobes yearning zealously."))
    }
 }
 
