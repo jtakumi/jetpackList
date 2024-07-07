@@ -11,6 +11,8 @@ lazy list and change theme
     - red
     - yellow
 
+## Landmark List Sequence Diagram
+
 ```mermaid
 
 ---
@@ -18,14 +20,14 @@ title: show Landmark info list on scroll screen
 ---
 
 sequenceDiagram
-Landmark.json->>ModelData:Read
-ModelData->>ListItem: Landmark infomation list
-ListItem->>LandmarkList: a Landmark's info according with number
-LandmarkList->>MainActivity: Landmark Items data
+landmark.json->>LandmarkViewModel:Read landmark info
+LandmarkViewModel->>LandmarkList: Column Landmark's info list
+LandmarkList->>MainActivity: show scrollable landmark list
 
 
 ```
 
+## Landmark List Class Diagram
 
 ```mermaid
 
@@ -34,33 +36,34 @@ title: jetpackList
 ---
 
 classDiagram
- MainActivity <|-- LandmarkList
- LandmarkList <|-- ListItem : List
- ListItem <|-- ModelData: List
- note for ListItem "landmark[0]
- landmark[1]
- landmark[2]..."
+ MainActivity <|-- LandmarkList :LazyColumn
+ LandmarkList <|-- LandmarkViewModel : LandmarkData
+ LandmarkViewModel <|-- LandmarkData: List
+ note for LandmarkList " LandmarkData "
 
- note for ModelData " Loading Landmark.json 
+ note for LandmarkData " Loading landmark.json 
  # json file contents
- Japanese Landmarks' information"
+ Japanese Landmarks' information
+ # class structure
+ id:silial number,
+ name:Landmark name,
+description:simply landmark description
+ "
 
 class MainActivity {
     LandmarkList()
 }
 
 class LandmarkList {
-     ListItem()
-     ListItem()
+     ListItem(name,description)
 }
 
-class ListItem {
+class LandmarkViewModel {
     String Landmark.name
     String Landmark.description
-    boolen isFavorite
 }
 
-class ModelData {
+class LandmarkData {
     Int id
     String name
     String description
@@ -69,6 +72,8 @@ class ModelData {
 
 
 ```
+
+## Theme State
 
 ```mermaid
 ---
