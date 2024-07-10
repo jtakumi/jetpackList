@@ -43,16 +43,22 @@ fun LandmarkList(viewModel: LandmarkViewModel) {
             }
             .border(1.dp, Color.Gray)
             .padding(16.dp)) {
-            Text(text = landmark.name,style = MaterialTheme.typography.headlineSmall)
+            Text(text = "No.${landmark.id}:${landmark.name}", style = MaterialTheme.typography.titleLarge)
             Text(text = landmark.description,style = MaterialTheme.typography.bodyLarge)
+            Text(text = "最寄りの空港:${landmark.airport}", style = MaterialTheme.typography.bodySmall)
             }
-        }
+    }
 
 @Preview(showBackground = true)
 @Composable
 fun ListItemPreview() {
    JetpackListTheme {
-       ListItem(landmark = LandmarkData(1, "landmark ex", "this is sample.\nAbsolutely, Bob cautiously danced, eagerly flipping gracefully, hoping indigo jumpsuits kept leaping magically, neatly opening purple, quietly rippling starlight, twinkling under velvet waltzes, xenophobes yearning zealously."))
+       ListItem(landmark = LandmarkData(
+           1,
+           "landmark ex",
+           "this is sample.\nAbsolutely, Bob cautiously danced, eagerly flipping gracefully, hoping indigo jumpsuits kept leaping magically, neatly opening purple, quietly rippling starlight, twinkling under velvet waltzes, xenophobes yearning zealously.",
+           "羽田空港"
+       ))
    }
 }
 
