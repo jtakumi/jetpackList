@@ -2,6 +2,7 @@ package com.example.jetpacklist.views
 
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +38,9 @@ fun LandmarkList(viewModel: LandmarkViewModel) {
     fun ListItem(landmark: LandmarkData) {
         Column(modifier = Modifier
             .fillMaxWidth()
+            .clickable {
+                // TODO show detail screen
+            }
             .border(1.dp, Color.Gray)
             .padding(16.dp)) {
             Text(text = landmark.name,style = MaterialTheme.typography.headlineSmall)
