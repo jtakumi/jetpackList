@@ -6,9 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.material3.Surface
+import androidx.navigation.compose.rememberNavController
 import com.example.jetpacklist.ui.theme.JetpackListTheme
 import com.example.jetpacklist.viewmodel.LandmarkViewModel
-import com.example.jetpacklist.views.LandmarkList
+import com.example.jetpacklist.views.SetLandmarkView
 
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackListTheme {
                 Surface {
-                    LandmarkList(viewModel = LandmarkViewModel)
+                    val navController = rememberNavController()
+                    SetLandmarkView(LandmarkViewModel,navController = navController)
+
                 }
             }
         }
