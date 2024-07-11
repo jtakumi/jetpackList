@@ -18,8 +18,7 @@ fun LandmarkDetailView(landmarkId: Int,landmarkName: String,description:String,a
     ) {
         Text(text = "観光地番号No.${landmarkId}",style = MaterialTheme.typography.titleMedium)
         Text(text = landmarkName,style = MaterialTheme.typography.headlineLarge)
-        Text(text = description, style = MaterialTheme.typography.bodyLarge)
-        Text(text = "")
-        Text(text = "観光地から最寄りの空港:${airport}", style = MaterialTheme.typography.bodySmall)
+        Text(text = "おすすめポイントやスポットなど\n $description", style = MaterialTheme.typography.bodyLarge)
+        Text(text = "\n観光地から最寄りの空港:${airport}", style = MaterialTheme.typography.bodySmall)
     }
 }
