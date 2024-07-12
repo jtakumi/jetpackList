@@ -15,6 +15,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -23,6 +24,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.jetpacklist.R
 import com.example.jetpacklist.data.LandmarkData
 import com.example.jetpacklist.enum.Screen
 import com.example.jetpacklist.ui.theme.JetpackListTheme
@@ -63,7 +65,7 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
     val landmarks = viewModel.landmarks.observeAsState(initial = emptyList())
    LazyColumn {
        item { Spacer(modifier = Modifier.padding(24.dp))}
-       item { Text(text = "観光地一覧", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.headlineLarge) }
+       item { Text(text = stringResource(R.string.landmarks), modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.headlineLarge) }
        items(landmarks.value.size) { index ->
            ListItem(landmark = landmarks.value[index],navController = navController)
        }
@@ -93,9 +95,9 @@ fun ListItemPreview() {
    JetpackListTheme {
        ListItem(landmark = LandmarkData(
            1,
-           "landmark ex",
-           "this is sample.\nAbsolutely, Bob cautiously danced, eagerly flipping gracefully, hoping indigo jumpsuits kept leaping magically, neatly opening purple, quietly rippling starlight, twinkling under velvet waltzes, xenophobes yearning zealously.",
-           "羽田空港",
+           stringResource(id = R.string.landmark_name),
+           "this is sample.\n" + stringResource(id = R.string.description),
+           stringResource(id = R.string.airport),
        ),
            navController = NavController(LocalContext.current)
        )

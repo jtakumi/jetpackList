@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">jetpackList</string>
+    <string name="landmarks">관광지 목록 </string>
+    <string name="landmark_number">관광지 번호</string>
+    <string name="landmark_name">관광지명</string>
+    <string name="description">추천 포인트와 명소 등</string>
+    <string name="airport">관광지에서 가장 가까운 공항:</string>
+</resources>

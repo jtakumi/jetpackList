@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">jetpackList</string>
+    <string name="landmarks">Hitos</string>
+    <string name="landmark_number">Hito nº</string>
+    <string name="landmark_name">Nombre del monumento</string>
+    <string name="description">Recomendaciones, manchas, etc.</string>
+    <string name="airport">Aeropuerto más cercano:</string>
+</resources>

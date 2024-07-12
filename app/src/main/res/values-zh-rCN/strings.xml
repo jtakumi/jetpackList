@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">jetpackList</string>
+    <string name="landmarks">地标</string>
+    <string name="landmark_number">地标编号</string>
+    <string name="landmark_name">地标名称</string>
+    <string name="description">建议、景点等。</string>
+    <string name="airport">距离置地广场最近的机场:</string>
+</resources>

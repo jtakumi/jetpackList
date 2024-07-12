@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">jetpackList</string>
+    <string name="app_name" translatable="false">jetpackList</string>
+    <string name="landmarks">Landmarks</string>
+    <string name="landmark_number">Landmark No.</string>
+    <string name="landmark_name">Landmark Name</string>
+    <string name="description">Recommendations,spots,etc.</string>
+    <string name="airport">Nearest airport from the Landmark:</string>
+
 </resources>
