@@ -19,7 +19,7 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
 
     private fun loadLandmarks() {
         val assetManager = getApplication<Application>().assets
-        val inputStream = assetManager.open("Landmarks.json")
+        val inputStream = assetManager.open("Landmarks_ja.json")
         val jsonString =InputStreamReader(inputStream).use { it.readText() }
         val landmarks =object : TypeToken<List<LandmarkData>>() {}.type
         _landmarks.value = Gson().fromJson(jsonString, landmarks)
