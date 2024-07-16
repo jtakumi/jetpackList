@@ -1,3 +1,4 @@
+[
 {"id": 1, "name": "Tokio", "description": "Una ciudad con destinos turísticos importantes como el Templo Sensoji, la Torre de Tokio, la Torre Skytree, Akihabara y Shibuya.", "airport": "Aeropuerto de Haneda"},
 {"id": 2, "name": "Kioto", "description": "Una ciudad rica en lugares históricos como el Pabellón Dorado, el Templo Kiyomizu, el Santuario Fushimi Inari, Arashiyama y el Castillo de Nijo.", "airport": "Aeropuerto Internacional de Kansai"},
 {"id": 3, "name": "Osaka", "description": "Una ciudad vibrante con atracciones como el Castillo de Osaka, Dotonbori, Universal Studios Japan y el Edificio Umeda Sky.", "airport": "Aeropuerto Internacional de Kansai"},

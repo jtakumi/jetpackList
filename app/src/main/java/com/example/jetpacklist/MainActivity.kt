@@ -24,10 +24,18 @@ class MainActivity : ComponentActivity() {
                 Surface {
                     val navController = rememberNavController()
                     SetLandmarkView(LandmarkViewModel,navController = navController)
-
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }
 
