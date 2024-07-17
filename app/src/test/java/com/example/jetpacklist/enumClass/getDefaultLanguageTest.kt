@@ -24,4 +24,34 @@ class getDefaultLanguageTest {
         val actual = getDefaultLanguage(language)
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `getDefaultLanguage returns korean file name`() {
+        val language = "ko"
+        val expected = "Landmarks_ko.json"
+        val actual = getDefaultLanguage(language)
+        assertEquals(expected, actual)
+    }
+    @Test
+    fun `getDefaultLanguage returns chinese file name`() {
+        val language = "zh"
+        val expected = "Landmarks_zh_rCN.json"
+        val actual = getDefaultLanguage(language)
+        assertEquals(expected, actual)
+    }
+    @Test
+    fun `getDefaultLanguage returns spanish file name`() {
+        val language = "es"
+        val expected = "Landmarks_es_rES.json"
+        val actual = getDefaultLanguage(language)
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getDefaultLanguage returns default file name`() {
+        val language = "aaaa"
+        val expected = "Landmarks.json"
+        val actual = getDefaultLanguage(language)
+        assertEquals(expected, actual)
+    }
 }
