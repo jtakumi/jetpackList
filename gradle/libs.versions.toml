@@ -1,6 +1,9 @@
 [versions]
 agp = "8.4.0"
 gson = "2.11.0"
+junitJunit = "5.1.1"
+junitJupiterApi = "5.7.0"
+junitJupiterEngine = "5.7.0"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -11,13 +14,19 @@ activityCompose = "1.9.0"
 composeBom = "2023.08.00"
 fragmentKtx = "1.8.1"
 firebaseCrashlyticsBuildtools = "3.0.2"
+mockitoKotlin = "4.0.1"
+mockk = "1.1"
 navigationCompose = "2.7.7"
+rules = "1.4.0"
+runner = "1.6.1"
 runtimeLivedata = "1.6.8"
 junitJupiter = "5.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -36,6 +45,11 @@ androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", ve
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiterApi" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiterEngine" }
+junit-v511 = { module = "junit:junit", version.ref = "junitJunit" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
