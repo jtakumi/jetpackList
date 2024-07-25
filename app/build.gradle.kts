@@ -64,11 +64,12 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation(libs.gson)
     implementation(libs.androidx.runtime.livedata)
-    testImplementation(libs.junit)
     implementation(libs.androidx.navigation.compose)
+    testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.jupiter.engine)
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.rules)
