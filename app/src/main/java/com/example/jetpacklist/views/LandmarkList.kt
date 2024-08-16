@@ -8,14 +8,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -54,18 +58,26 @@ fun SetLandmarkView(landmarkViewModel: LandmarkViewModel,navController: NavHostC
                 landmarkId=landmarkId,
                 landmarkName=landmarkName,
                 description=description,
-                airport=airport
+                airport=airport,
+                navController = navController
             )
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
     val landmarks = viewModel.landmarks.observeAsState(initial = emptyList())
+    CenterAlignedTopAppBar(
+        title = {Text(text = stringResource(id = R.string.app_name),  maxLines = 1, overflow = TextOverflow.Ellipsis)},
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary
+        )
+    )
    LazyColumn {
-       item { Spacer(modifier = Modifier.padding(24.dp))}
-       item { Text(text = stringResource(R.string.landmarks), modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.headlineLarge) }
+       item { Spacer(modifier = Modifier.padding(64.dp))}
        items(landmarks.value.size) { index ->
            ListItem(landmark = landmarks.value[index],navController = navController)
        }
