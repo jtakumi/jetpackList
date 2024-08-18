@@ -30,24 +30,30 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.jetpacklist.R
 import com.example.jetpacklist.data.LandmarkData
-import com.example.jetpacklist.enum.Screen
 import com.example.jetpacklist.ui.theme.JetpackListTheme
 import com.example.jetpacklist.viewmodel.LandmarkViewModel
 
 
+sealed class Destination(val route: String) {
+    data object Landmarks : Destination("landmarks")
+    data object LandmarkDetail : Destination("landmark_detail/{landmarkId}/{landmarkName}/{description}/{airport}"){
+        fun createRoute(landmark: LandmarkData) = "landmark_detail/${landmark.id}/${landmark.name}/${landmark.description}/${landmark.airport}"
+    }
+}
+
 @Composable
 fun SetLandmarkView(landmarkViewModel: LandmarkViewModel,navController: NavHostController){
-    NavHost(navController = navController, startDestination = Screen.LANDMARKS.name) {
-        composable(Screen.LANDMARKS.name) {
+    NavHost(navController = navController, startDestination = Destination.Landmarks.route) {
+        composable(Destination.Landmarks.route) {
             LandmarkList(viewModel = landmarkViewModel,navController)
         }
-        composable("${Screen.LANDMARK_DETAIL.name}/{landmarkId}/{landmarkName}/{description}/{airport}",
+        composable(route = Destination.LandmarkDetail.route,
             arguments = listOf(
-            navArgument("landmarkId") {type = NavType.IntType},
-        navArgument("landmarkName") {type = NavType.StringType},
-            navArgument("description"){type = NavType.StringType},
-            navArgument("airport"){type = NavType.StringType},
-        )
+                navArgument("landmarkId") {type = NavType.IntType},
+                navArgument("landmarkName") {type = NavType.StringType},
+                navArgument("description"){type = NavType.StringType},
+                navArgument("airport"){type = NavType.StringType},
+            )
         )
         { backStackEntry ->
             val landmarkId = backStackEntry.arguments?.getInt("landmarkId") ?: 0
@@ -90,7 +96,7 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
         Column(modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                navController.navigate("${Screen.LANDMARK_DETAIL.name}/${landmark.id}/${landmark.name}/${landmark.description}/${landmark.airport}")
+                navController.navigate(route = Destination.LandmarkDetail.createRoute(landmark))
             }
             .border(1.dp, Color.Gray)
             .padding(16.dp)) {
