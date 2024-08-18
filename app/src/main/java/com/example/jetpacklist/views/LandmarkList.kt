@@ -35,8 +35,8 @@ import com.example.jetpacklist.viewmodel.LandmarkViewModel
 
 
 sealed class Destination(val route: String) {
-    object Landmarks : Destination("landmarks")
-    object LandmarkDetail : Destination("landmark_detail/{landmarkId}/{landmarkName}/{description}/{airport}"){
+    data object Landmarks : Destination("landmarks")
+    data object LandmarkDetail : Destination("landmark_detail/{landmarkId}/{landmarkName}/{description}/{airport}"){
         fun createRoute(landmark: LandmarkData) = "landmark_detail/${landmark.id}/${landmark.name}/${landmark.description}/${landmark.airport}"
     }
 }
