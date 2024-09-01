@@ -4,6 +4,7 @@ package com.example.jetpacklist.views
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -75,20 +77,33 @@ fun SetLandmarkView(landmarkViewModel: LandmarkViewModel,navController: NavHostC
 @Composable
 fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
     val landmarks = viewModel.landmarks.observeAsState(initial = emptyList())
-    CenterAlignedTopAppBar(
-        title = {Text(text = stringResource(id = R.string.app_name),  maxLines = 1, overflow = TextOverflow.Ellipsis)},
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary
+    Column {
+        CenterAlignedTopAppBar(
+            title = {
+                Text(
+                    text = stringResource(id = R.string.app_name),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                titleContentColor = MaterialTheme.colorScheme.primary
+            )
         )
-    )
-   LazyColumn {
-       item { Spacer(modifier = Modifier.padding(64.dp))}
-       items(landmarks.value.size) { index ->
-           ListItem(landmark = landmarks.value[index],navController = navController)
-       }
-       item { Spacer(modifier = Modifier.padding(24.dp))}
-   }
+        Row(modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically) {
+            Spacer(modifier = Modifier.weight(1f))
+            FavoriteToggle()    
+        }
+        
+        LazyColumn {
+            items(landmarks.value.size) { index ->
+                ListItem(landmark = landmarks.value[index], navController = navController)
+            }
+            item { Spacer(modifier = Modifier.padding(24.dp)) }
+        }
+    }
 }
 
     @Composable
