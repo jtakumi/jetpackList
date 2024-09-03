@@ -95,7 +95,7 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
             .fillMaxWidth()
             .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically) {
-            Text(text = "ここすきスポット")
+            Text(text = stringResource(id = R.string.favoriteTitle), style = MaterialTheme.typography.bodyLarge)
             // 中央のスペースを開けるためのスペーサー
             Spacer(modifier = Modifier.weight(1f))
             FavoriteToggle()    
