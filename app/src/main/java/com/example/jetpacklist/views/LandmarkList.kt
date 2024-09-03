@@ -91,8 +91,12 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
                 titleContentColor = MaterialTheme.colorScheme.primary
             )
         )
-        Row(modifier = Modifier.fillMaxWidth().padding(16.dp),
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically) {
+            Text(text = "ここすきスポット")
+            // 中央のスペースを開けるためのスペーサー
             Spacer(modifier = Modifier.weight(1f))
             FavoriteToggle()    
         }
