@@ -6,4 +6,5 @@
     <string name="landmark_name">Nombre del monumento</string>
     <string name="description">Recomendaciones, manchas, etc.</string>
     <string name="airport">Aeropuerto más cercano:</string>
+    <string name="favoriteTitle">Lugares favoritos</string>
 </resources>
