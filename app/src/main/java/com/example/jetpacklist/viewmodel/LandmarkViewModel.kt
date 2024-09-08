@@ -33,7 +33,7 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
     private fun getLocalizeJSONFileName():String {
         val locale = Locale.getDefault()
         val language = locale.language
-        Log.d("tag",language)
+        Log.d("jetpackList",language)
        return getDefaultLanguage(language)
     }
 }
