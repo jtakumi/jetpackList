@@ -79,6 +79,7 @@ fun SetLandmarkView(landmarkViewModel: LandmarkViewModel,navController: NavHostC
 @Composable
 fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
     val landmarks = viewModel.landmarks.observeAsState(initial = emptyList())
+    val favoriteDataList = viewModel.favorites.observeAsState(initial = emptyList())
     Column {
         CenterAlignedTopAppBar(
             title = {
@@ -105,7 +106,9 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
         
         LazyColumn {
             items(landmarks.value.size) { index ->
-                ListItem(landmark = landmarks.value[index], navController = navController)
+                if (isOnFavoriteToggle.not() || favoriteDataList.value[index].isFavorite) {
+                        ListItem(landmark = landmarks.value[index], navController = navController)
+                }
             }
             item { Spacer(modifier = Modifier.padding(24.dp)) }
         }
