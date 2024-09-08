@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -24,6 +25,7 @@ import com.example.jetpacklist.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandmarkDetailView(landmarkId: Int,landmarkName: String,description:String,airport:String,navController: NavController) {
+    Column {
     CenterAlignedTopAppBar(
         title = {Text(text = stringResource(id = R.string.app_name), maxLines = 1, overflow = TextOverflow.Ellipsis)},
         navigationIcon = {
@@ -39,8 +41,9 @@ fun LandmarkDetailView(landmarkId: Int,landmarkName: String,description:String,a
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(start = 16.dp, end = 16.dp),
         verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start
     ) {
         Text(text = stringResource(id = R.string.landmark_number) +landmarkId,style = MaterialTheme.typography.titleMedium)
         Text(text = landmarkName,style = MaterialTheme.typography.headlineLarge)
@@ -48,3 +51,4 @@ fun LandmarkDetailView(landmarkId: Int,landmarkName: String,description:String,a
         Text(text = "\n" + stringResource(id = R.string.airport) + airport, style = MaterialTheme.typography.bodySmall)
     }
 }
+    }

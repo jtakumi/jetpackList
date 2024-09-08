@@ -6,4 +6,5 @@
     <string name="landmark_name">観光地名</string>
     <string name="description">おすすめポイントやスポットなど</string>
     <string name="airport">観光地から最寄りの空港:</string>
+    <string name="favoriteTitle">ここ好きスポット</string>
 </resources>
