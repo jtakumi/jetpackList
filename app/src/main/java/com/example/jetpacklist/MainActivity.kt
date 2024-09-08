@@ -8,13 +8,16 @@ import androidx.activity.viewModels
 import androidx.compose.material3.Surface
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpacklist.ui.theme.JetpackListTheme
+import com.example.jetpacklist.viewmodel.FavoritesViewModel
 import com.example.jetpacklist.viewmodel.LandmarkViewModel
 import com.example.jetpacklist.views.SetLandmarkView
 
 
 class MainActivity : ComponentActivity() {
 
-    private val LandmarkViewModel: LandmarkViewModel by viewModels()
+    private val landmarkViewModel: LandmarkViewModel by viewModels()
+    private val favoritesViewModel: FavoritesViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +26,7 @@ class MainActivity : ComponentActivity() {
             JetpackListTheme {
                 Surface {
                     val navController = rememberNavController()
-                    SetLandmarkView(LandmarkViewModel,navController = navController)
+                    SetLandmarkView(landmarkViewModel,navController = navController)
                 }
             }
         }
