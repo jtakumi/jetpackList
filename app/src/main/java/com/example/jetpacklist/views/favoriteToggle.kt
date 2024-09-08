@@ -1,5 +1,6 @@
 package com.example.jetpacklist.views
 
+import android.util.Log
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -10,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 @Composable
-fun FavoriteToggle() {
+fun favoriteToggle(): Boolean {
     var isFavorite by remember {
         mutableStateOf(false)
     }
@@ -24,4 +25,6 @@ fun FavoriteToggle() {
             uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer
         )
     )
+    Log.d("jetpackList", "favoriteToggle: $isFavorite")
+    return isFavorite
 }

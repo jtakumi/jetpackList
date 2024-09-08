@@ -36,6 +36,8 @@ import com.example.jetpacklist.ui.theme.JetpackListTheme
 import com.example.jetpacklist.viewmodel.LandmarkViewModel
 
 
+private var isOnFavoriteToggle = false
+
 sealed class Destination(val route: String) {
     data object Landmarks : Destination("landmarks")
     data object LandmarkDetail : Destination("landmark_detail/{landmarkId}/{landmarkName}/{description}/{airport}"){
@@ -98,7 +100,7 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
             Text(text = stringResource(id = R.string.favoriteTitle), style = MaterialTheme.typography.bodyLarge)
             // 中央のスペースを開けるためのスペーサー
             Spacer(modifier = Modifier.weight(1f))
-            FavoriteToggle()    
+            isOnFavoriteToggle = favoriteToggle()
         }
         
         LazyColumn {
