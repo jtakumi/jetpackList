@@ -32,6 +32,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.jetpacklist.R
 import com.example.jetpacklist.data.LandmarkData
+import com.example.jetpacklist.helper.FavoriteStar
+import com.example.jetpacklist.helper.favoriteToggle
 import com.example.jetpacklist.ui.theme.JetpackListTheme
 import com.example.jetpacklist.viewmodel.LandmarkViewModel
 
@@ -107,7 +109,7 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
         LazyColumn {
             items(landmarks.value.size) { index ->
                 if (isOnFavoriteToggle.not() || favoriteDataList.value[index].isFavorite) {
-                        ListItem(landmark = landmarks.value[index], navController = navController)
+                        ListItem(landmark = landmarks.value[index],favoriteData=favoriteDataList.value[index].isFavorite, navController = navController)
                 }
             }
             item { Spacer(modifier = Modifier.padding(24.dp)) }
@@ -116,7 +118,7 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
 }
 
     @Composable
-    fun ListItem(landmark: LandmarkData,navController: NavController) {
+    fun ListItem(landmark: LandmarkData, favoriteData:Boolean, navController: NavController) {
         Column(modifier = Modifier
             .fillMaxWidth()
             .clickable {
@@ -124,7 +126,11 @@ fun LandmarkList(viewModel: LandmarkViewModel,navController: NavController) {
             }
             .border(1.dp, Color.Gray)
             .padding(16.dp)) {
-            Text(text = "No.${landmark.id}:${landmark.name}", style = MaterialTheme.typography.titleLarge)
+            Row{
+                Text(text = "No.${landmark.id}:${landmark.name}", style = MaterialTheme.typography.titleLarge)
+                Spacer(modifier = Modifier.weight(1f))
+                FavoriteStar(isFavoriteData = favoriteData)
+            }
             Text(text = landmark.description,style = MaterialTheme.typography.bodyLarge)
             }
     }
@@ -141,6 +147,7 @@ fun ListItemPreview() {
            "this is sample.\n" + stringResource(id = R.string.description),
            stringResource(id = R.string.airport),
        ),
+           favoriteData = false,
            navController = NavController(LocalContext.current)
        )
    }

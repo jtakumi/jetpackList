@@ -2,6 +2,8 @@ package com.example.jetpacklist.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -21,6 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.jetpacklist.R
+import com.example.jetpacklist.helper.FavoriteStar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,7 +49,11 @@ fun LandmarkDetailView(landmarkId: Int,landmarkName: String,description:String,a
         horizontalAlignment = Alignment.Start
     ) {
         Text(text = stringResource(id = R.string.landmark_number) +landmarkId,style = MaterialTheme.typography.titleMedium)
-        Text(text = landmarkName,style = MaterialTheme.typography.headlineLarge)
+        Row{
+            Text(text = landmarkName,style = MaterialTheme.typography.headlineLarge)
+            Spacer(modifier = Modifier.weight(1f))
+            FavoriteStar(isFavoriteData = false)
+        }
         Text(text = stringResource(id = R.string.description) + "\n $description", style = MaterialTheme.typography.bodyLarge)
         Text(text = "\n" + stringResource(id = R.string.airport) + airport, style = MaterialTheme.typography.bodySmall)
     }
