@@ -1,4 +1,4 @@
-package com.example.jetpacklist.views
+package com.example.jetpacklist.helper
 
 import android.util.Log
 import androidx.compose.material3.MaterialTheme
