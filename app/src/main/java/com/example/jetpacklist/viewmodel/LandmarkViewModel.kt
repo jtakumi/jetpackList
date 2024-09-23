@@ -1,7 +1,13 @@
 package com.example.jetpacklist.viewmodel
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,13 +16,19 @@ import com.example.jetpacklist.data.LandmarkData
 import com.example.jetpacklist.enum.getDefaultLanguage
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import java.util.Locale
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "UserPreferences")
 
 class LandmarkViewModel(application: Application) : AndroidViewModel(application) {
     private val _landmarks = MutableLiveData<List<LandmarkData>>()
     val landmarks: LiveData<List<LandmarkData>> = _landmarks
     private val _favorites = MutableLiveData<List<FavoriteData>>()
     val favorites: LiveData<List<FavoriteData>> = _favorites
+
 
     init {
         loadLandmarks()
@@ -26,6 +38,23 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
         loadLandmarks()
         loadFavorites()
     }
+
+    fun readToggleState(context: Context): Flow<Boolean> {
+        val toggleKey = booleanPreferencesKey("TOGGLE_KEY")
+        return context.dataStore.data.map {
+            preferences -> preferences[toggleKey] ?: false
+        }
+    }
+    suspend fun convertFlowBooleanToBoolean(flow: Flow<Boolean>): Boolean {
+        return flow.first()
+    }
+
+     suspend fun saveToggleState(context: Context, isChecked: Boolean) {
+         val toggleKey = booleanPreferencesKey("TOGGLE_KEY")
+         context.dataStore.edit { preferences ->
+             preferences[toggleKey] = isChecked
+         }
+     }
 
      private fun loadLandmarks() {
         try {
