@@ -22,8 +22,12 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
         loadLandmarks()
         loadFavorites()
     }
+    fun reStartApp(){
+        loadLandmarks()
+        loadFavorites()
+    }
 
-    private fun loadLandmarks() {
+     private fun loadLandmarks() {
         try {
             val assetManager = getApplication<Application>().assets
             val inputStream = assetManager.open(getLocalizeJSONFileName())

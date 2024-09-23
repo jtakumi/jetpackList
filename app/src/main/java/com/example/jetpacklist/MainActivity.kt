@@ -35,13 +35,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
     override fun onResume() {
         super.onResume()
-
+        landmarkViewModel.reStartApp()
     }
 
     override fun onPause() {
         super.onPause()
+    }
+    suspend fun readUserPreferences(){
+
+    }
+    suspend fun writeUserPreferences(){
+
     }
 }
 
