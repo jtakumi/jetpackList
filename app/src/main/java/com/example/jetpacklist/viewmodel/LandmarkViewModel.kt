@@ -16,7 +16,6 @@ import com.example.jetpacklist.data.LandmarkData
 import com.example.jetpacklist.enum.getDefaultLanguage
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.util.Locale
@@ -28,27 +27,27 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
     val landmarks: LiveData<List<LandmarkData>> = _landmarks
     private val _favorites = MutableLiveData<List<FavoriteData>>()
     val favorites: LiveData<List<FavoriteData>> = _favorites
-    private lateinit var currentLanguage:String
+    private lateinit var CurrentLanguage:String
 
     init {
         loadLandmarks()
         loadFavorites()
     }
     fun reStartApp(){
-        if(currentLanguage != getLocalizeJSONFileName()){
+        if(CurrentLanguage != getLocalizeJSONFileName()){
             loadLandmarks()
             loadFavorites() 
         }
     }
 
-    fun readToggleState(context: Context): Flow<Boolean> {
+    // DataStore を使用する
+    suspend fun readToggleState(context: Context): Boolean {
         val toggleKey = booleanPreferencesKey("TOGGLE_KEY")
-        return context.dataStore.data.map {
+        val toggleFlow = context.dataStore.data.map {
             preferences -> preferences[toggleKey] ?: false
         }
-    }
-    suspend fun convertFlowBooleanToBoolean(flow: Flow<Boolean>): Boolean {
-        return flow.first()
+        // first() を使用することでFlow<Boolean>を Boolean に変換できる
+        return toggleFlow.first()
     }
 
      suspend fun saveToggleState(context: Context, isChecked: Boolean) {
@@ -61,8 +60,8 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
      private fun loadLandmarks() {
         try {
             val assetManager = getApplication<Application>().assets
-            currentLanguage = getLocalizeJSONFileName()
-            val inputStream = assetManager.open(currentLanguage)
+            CurrentLanguage = getLocalizeJSONFileName()
+            val inputStream = assetManager.open(CurrentLanguage)
             val jsonString =inputStream.bufferedReader().use { it.readText() }
             val landmarks =object : TypeToken<List<LandmarkData>>() {}.type
             _landmarks.value = Gson().fromJson(jsonString, landmarks)
