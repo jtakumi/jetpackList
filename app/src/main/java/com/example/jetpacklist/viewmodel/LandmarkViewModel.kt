@@ -27,14 +27,14 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
     val landmarks: LiveData<List<LandmarkData>> = _landmarks
     private val _favorites = MutableLiveData<List<FavoriteData>>()
     val favorites: LiveData<List<FavoriteData>> = _favorites
-    private lateinit var CurrentLanguage:String
+    private lateinit var currentLanguage:String
 
     init {
         loadLandmarks()
         loadFavorites()
     }
     fun reStartApp(){
-        if(CurrentLanguage != getLocalizeJSONFileName()){
+        if(currentLanguage != getLocalizeJSONFileName()){
             loadLandmarks()
             loadFavorites() 
         }
@@ -60,8 +60,8 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
      private fun loadLandmarks() {
         try {
             val assetManager = getApplication<Application>().assets
-            CurrentLanguage = getLocalizeJSONFileName()
-            val inputStream = assetManager.open(CurrentLanguage)
+            currentLanguage = getLocalizeJSONFileName()
+            val inputStream = assetManager.open(currentLanguage)
             val jsonString =inputStream.bufferedReader().use { it.readText() }
             val landmarks =object : TypeToken<List<LandmarkData>>() {}.type
             _landmarks.value = Gson().fromJson(jsonString, landmarks)
