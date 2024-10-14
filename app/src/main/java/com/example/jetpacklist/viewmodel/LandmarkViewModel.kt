@@ -21,20 +21,21 @@ import kotlinx.coroutines.flow.map
 import java.util.Locale
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "UserPreferences")
+private const val ITEMS_PER_PAGE = 20
 
 class LandmarkViewModel(application: Application) : AndroidViewModel(application) {
     private val _landmarks = MutableLiveData<List<LandmarkData>>()
     val landmarks: LiveData<List<LandmarkData>> = _landmarks
     private val _favorites = MutableLiveData<List<FavoriteData>>()
     val favorites: LiveData<List<FavoriteData>> = _favorites
-    private lateinit var currentLanguage:String
+    private lateinit var CurrentLanguage:String
 
     init {
         loadLandmarks()
         loadFavorites()
     }
     fun reStartApp(){
-        if(currentLanguage != getLocalizeJSONFileName()){
+        if(CurrentLanguage != getLocalizeJSONFileName()){
             loadLandmarks()
             loadFavorites() 
         }
@@ -60,8 +61,8 @@ class LandmarkViewModel(application: Application) : AndroidViewModel(application
      private fun loadLandmarks() {
         try {
             val assetManager = getApplication<Application>().assets
-            currentLanguage = getLocalizeJSONFileName()
-            val inputStream = assetManager.open(currentLanguage)
+            CurrentLanguage = getLocalizeJSONFileName()
+            val inputStream = assetManager.open(CurrentLanguage)
             val jsonString =inputStream.bufferedReader().use { it.readText() }
             val landmarks =object : TypeToken<List<LandmarkData>>() {}.type
             _landmarks.value = Gson().fromJson(jsonString, landmarks)
