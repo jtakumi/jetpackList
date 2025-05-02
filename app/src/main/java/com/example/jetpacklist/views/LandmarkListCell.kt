@@ -27,8 +27,6 @@ import com.example.jetpacklist.ui.theme.JetpackListTheme
 fun LandmarkListCell(
     landmarkName: String,
     landmarkImage: Int,
-    isFavorite: Boolean,
-    onFavoriteToggle: () -> Unit
 ) {
     JetpackListTheme {
         Row(
@@ -64,9 +62,7 @@ fun LandmarkListCellPreview() {
     JetpackListTheme {
         LandmarkListCell(
             landmarkName = "the city",
-            landmarkImage = R.drawable.the_city_image,
-            isFavorite = true,
-            onFavoriteToggle = {}
+            landmarkImage = R.drawable.the_city_image
         )
     }
 }
