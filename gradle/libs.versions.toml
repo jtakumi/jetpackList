@@ -1,30 +1,34 @@
 [versions]
-agp = "8.4.0"
+agp = "8.9.2"
 gson = "2.11.0"
 junitJunit = "5.1.1"
-junitJupiterApi = "5.7.0"
-junitJupiterEngine = "5.7.0"
+junitJupiterApi = "5.8.1"
+junitJupiterEngine = "5.8.1"
 kotlin = "1.9.0"
-coreKtx = "1.13.1"
+coreKtx = "1.16.0"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.8.1"
-activityCompose = "1.9.0"
-composeBom = "2023.08.00"
-fragmentKtx = "1.8.1"
-firebaseCrashlyticsBuildtools = "3.0.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.10.1"
+composeBom = "2025.04.01"
+fragmentKtx = "1.8.6"
+firebaseCrashlyticsBuildtools = "3.0.3"
 mockitoKotlin = "4.0.1"
 mockk = "1.1"
-navigationCompose = "2.7.7"
-rules = "1.4.0"
-runner = "1.6.1"
-runtimeLivedata = "1.6.8"
+navigationCompose = "2.8.9"
+roomRuntime = "2.7.1"
+rules = "1.6.1"
+runner = "1.6.2"
+runtimeLivedata = "1.8.0"
 junitJupiter = "5.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
